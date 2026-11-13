@@ -1,0 +1,11 @@
+const $ = id => document.getElementById(id);
+const api = async (url, options) => { const r = await fetch(url, options); const data = await r.json(); return {ok:r.ok, data}; };
+function line(title, subtitle, click) { const b = document.createElement('button'); b.className='result'; const strong=document.createElement('strong'); strong.textContent=title; const small=document.createElement('span'); small.textContent=subtitle; b.append(strong,small); if(click)b.onclick=click; else b.disabled=true; return b; }
+async function resources() { const {data}=await api('/api/resources?q='+encodeURIComponent($('search').value)); $('resources').replaceChildren(...(data.resources||[]).map(x=>line(x.title,x.summary))); if(!data.resources?.length)$('resources').textContent=data.error||'Sin resultados.'; }
+async function receipts() { const {data}=await api('/api/receipts'); $('receipts').replaceChildren(...data.receipts.map(x=>line('#'+x.id+' · '+x.item,'Ver comprobante →',async()=>{const r=await api('/api/receipts/'+x.id); $('receiptDetail').textContent=r.data.detail||r.data.error;}))); }
+async function reports() { const {data}=await api('/api/exports'); $('reports').replaceChildren(...data.reports.map(x=>line(x,'Previsualizar →',async()=>{const r=await api('/api/exports/preview?name='+encodeURIComponent(x)); $('reportDetail').textContent=r.data.content||r.data.error;}))); }
+async function wallet() {const {data}=await api('/api/wallet'); $('balance').textContent=data.balance+' créditos'; document.querySelectorAll('[data-pass]').forEach(b=>{const owned=data.passes.includes(b.dataset.pass); b.disabled=owned; b.textContent=owned?'Pase adquirido':'Comprar · '+data.prices[b.dataset.pass]+' créditos';});}
+$('searchBtn').onclick=resources; $('search').onkeydown=e=>{if(e.key==='Enter')resources();};
+document.querySelectorAll('[data-pass]').forEach(b=>b.onclick=async()=>{const r=await api('/api/passes/buy',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({pass:b.dataset.pass})}); $('vaultDetail').textContent=r.data.message||r.data.error; await wallet();});
+$('vaultBtn').onclick=async()=>{const r=await api('/api/vault'); $('vaultDetail').textContent=r.data.code||r.data.error;};
+resources();receipts();reports();wallet();

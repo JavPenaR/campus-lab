@@ -1,0 +1,13 @@
+services:
+  campus-lab:
+    build: .
+    ports:
+      - "127.0.0.1:8080:8080"
+    environment:
+      DATA_DIR: /app/data
+    volumes:
+      - campus_data:/app/data
+    restart: unless-stopped
+
+volumes:
+  campus_data:

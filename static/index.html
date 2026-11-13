@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Campus Lab · Portal estudiantil</title>
+  <link rel="stylesheet" href="/app.css">
+</head>
+<body>
+  <header class="topbar"><a class="brand" href="/">◈ <span>campus<span class="accent">lab</span></span></a><div class="topright"><span class="status"><i></i> Entorno de prácticas</span><span class="avatar">L</span><span>Lucía Rojas</span></div></header>
+  <main>
+    <section class="hero"><div><p class="eyebrow">PORTAL ESTUDIANTIL / SEMESTRE 2026</p><h1>Tu espacio para<br><em>explorar y aprender.</em></h1><p>Recursos, comprobantes e informes de tu experiencia en el campus.</p></div><div class="hero-card"><span class="hero-icon">⌁</span><strong>Laboratorio de seguridad</strong><p>Un entorno aislado para investigar cómo se comportan las aplicaciones web.</p><span class="hero-foot">4 desafíos disponibles <b>↗</b></span></div></section>
+    <section class="section-head"><div><p class="eyebrow">ESPACIO DE TRABAJO</p><h2>Herramientas del campus</h2></div><span>Cuenta de prueba · Lucía Rojas</span></section>
+    <div class="grid">
+      <section class="card wide"><div class="card-title"><div class="badge purple">⌕</div><div><h3>Biblioteca de recursos</h3><p>Busca material académico disponible.</p></div></div><label for="search">Buscar por tema</label><div class="searchbox"><input id="search" placeholder="Prueba con redes, bases de datos..." autocomplete="off"><button id="searchBtn">Buscar →</button></div><div id="resources" class="results"></div></section>
+      <section class="card"><div class="card-title"><div class="badge orange">▤</div><div><h3>Mis comprobantes</h3><p>Consulta tus registros recientes.</p></div></div><div id="receipts" class="results"></div><div id="receiptDetail" class="detail muted">Selecciona un comprobante.</div></section>
+      <section class="card"><div class="card-title"><div class="badge blue">⇩</div><div><h3>Informes</h3><p>Previsualiza los archivos del semestre.</p></div></div><div id="reports" class="results"></div><pre id="reportDetail" class="detail muted">Selecciona un informe.</pre></section>
+      <section class="card wide"><div class="card-title"><div class="badge green">◇</div><div><h3>Archivo de investigación</h3><p>Obtén ambos pases para abrir el archivo reservado.</p></div><span id="balance" class="balance">100 créditos</span></div><div class="pass-grid"><div class="pass"><span>01 / PASE</span><h4>Atlas</h4><p>Acceso a cartografía y trabajo de campo.</p><button data-pass="atlas">Comprar · 80 créditos</button></div><div class="pass"><span>02 / PASE</span><h4>Orión</h4><p>Acceso a observación y análisis.</p><button data-pass="orion">Comprar · 80 créditos</button></div></div><button id="vaultBtn" class="text-button">Abrir archivo de investigación ↗</button><div id="vaultDetail" class="detail muted">Necesitas los dos pases.</div></section>
+    </div>
+    <footer>Campus Lab <span>Entorno ficticio para prácticas autorizadas · No publicar en Internet</span></footer>
+  </main>
+  <script src="/app.js"></script>
+</body>
+</html>
